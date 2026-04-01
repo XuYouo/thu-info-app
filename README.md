@@ -1,105 +1,166 @@
-# thu-info-app
+# THU Info Agent README
 
-[![Build Status](https://github.com/thu-info-community/thu-info-app/workflows/Build%20Android%20and%20iOS/badge.svg)](https://github.com/thu-info-community/thu-info-app/actions?query=workflow%3A%22Build+Android+and+iOS%22) [![GitHub release](https://img.shields.io/github/v/release/thu-info-community/thu-info-app)](https://github.com/thu-info-community/thu-info-app/releases) [![Platform Android](https://img.shields.io/badge/platform-android-brightgreen)](https://mirrors.tuna.tsinghua.edu.cn/github-release/thu-info-community/thu-info-app/LatestRelease/) [![Platform iOS](https://img.shields.io/badge/platform-ios-brightgreen)](https://apps.apple.com/cn/app/thu-info/id1533968428) [![Platform HarmonyOS](https://img.shields.io/badge/platform-HarmonyOS-brightgreen)](https://appgallery.huawei.com/app/detail?id=com.unidy2002.thuinfo)
+This README is intentionally written for AI agents and skill-driven coding workflows.
 
-An APP aimed at integrating various sources of campus information.
+Treat this repository as a skill-enabled monorepo for THU Info. The preferred working mode is:
 
-**[Checkout our official website!](https://app.cs.tsinghua.edu.cn/)**
+1. Read the repo-local skill index in `skills/`.
+2. Start with `thu-info-workspace` for orientation.
+3. Switch to the most specific domain skill before making changes.
+4. Trace bugs from app entrypoint to Redux to `InfoHelper` to `packages/thu-info-lib`.
 
-## Release
+## Working Assumption
 
-Android:
+Use this repository together with the repo-local skills under `skills/`. These skills are designed for the full monorepo, not for `packages/thu-info-lib` in isolation.
 
-- [Tuna Mirror (Recommended)](https://mirrors.tuna.tsinghua.edu.cn/github-release/thu-info-community/thu-info-app/LatestRelease/)
-- [BSFU Mirror](https://mirrors.bfsu.edu.cn/github-release/thu-info-community/thu-info-app/LatestRelease/)
+That means a typical bug fix may touch:
 
-iOS: [App Store](https://apps.apple.com/cn/app/thu-info/id1533968428)
+- `apps/thu-info-app`
+- `packages/thu-info-lib`
+- `packages/RTNNetworkUtils`
+- `skills/*`
 
-HarmonyOS: [AppGallery](https://appgallery.huawei.com/app/detail?id=com.unidy2002.thuinfo)
+Do not assume API bugs always live only in `packages/thu-info-lib`. Many failures are caused by one of:
 
----
+- wrong screen parameters
+- stale Redux state
+- incorrect helper call site
+- parser or model drift in `thu-info-lib`
+- UI assumptions that no longer match normalized data
 
-If you are a developer...
+## Repo Shape
 
-## Build from source
+### App shell
 
-### Prerequisites
+- `apps/thu-info-app`
+- Owns navigation, screens, components, Redux, themes, translations, startup, and platform-specific UX.
 
-#### Android
+### Library layer
 
-- [Node.js](https://nodejs.org/) >= 18
-- [Yarn](https://classic.yarnpkg.com/lang/en/) Classic
-- [JDK](https://adoptium.net/temurin/releases) >= 17
-- [Android Studio](https://developer.android.com/studio/index.html) or [Intellij IDEA](https://www.jetbrains.com/idea/) with `Android SDK Platform 34` and `Android SDK Build-Tools 34.0.0` installed.
+- `packages/thu-info-lib`
+- Owns `InfoHelper`, login and roaming flows, request wrappers, parsers, typed models, and mocks.
 
-#### iOS
+### Native redirect bridge
 
-**Make sure you have Xcode >= 12 installed and the command line tools enabled.**
+- `packages/RTNNetworkUtils`
+- Supports redirect handling used by auth on Harmony/OpenHarmony.
 
-We recommend using [Homebrew](https://brew.sh/) to install the tools required.
+### Agent skill layer
 
-```bash
-brew install node
-brew install yarn
-brew install cocoapods
-brew install watchman   # optional, install only for higher development performance
+- `skills`
+- Holds repo-local skills for workspace orientation and domain-specific coding tasks.
+
+## Installed Repo-Local Skills
+
+- `thu-info-workspace`
+  - Start here for cross-domain work, architecture mapping, and multi-module bug triage.
+- `thu-info-auth-session`
+  - Use for login, logout, cookies, 2FA, trusted devices, and session persistence.
+- `thu-info-academic`
+  - Use for report, GPA, evaluation, physical exam, classrooms, degree plan, THOS, and course registration.
+- `thu-info-schedule-calendar`
+  - Use for official schedules, custom schedules, sync, ICS export, and school calendar behavior.
+- `thu-info-news-deepseek`
+  - Use for news feeds, search, detail parsing, subscriptions, favorites, and DeepSeek integration.
+- `thu-info-reservations`
+  - Use for library seats, library rooms, sports booking, and reserves library flows.
+- `thu-info-campus-finance`
+  - Use for campus card, expenditure, invoices, bank payment, and graduate income.
+- `thu-info-dorm-life`
+  - Use for dorm score, electricity, washer, water, and dorm-related credentials.
+- `thu-info-network`
+  - Use for campus network login, balances, account info, and online devices.
+- `thu-info-settings-feedback`
+  - Use for settings, app secret, privacy, feedback, announcements, and about/update UX.
+
+## Recommended Agent Workflow
+
+### For unknown bugs
+
+1. Start with `skills/thu-info-workspace/SKILL.md`.
+2. Find the route in `apps/thu-info-app/src/components/Root.tsx`.
+3. Find the entry screen in `apps/thu-info-app/src/ui/**`.
+4. Check relevant Redux slices in `apps/thu-info-app/src/redux/slices/**`.
+5. Trace the helper call through `apps/thu-info-app/src/redux/store.ts`.
+6. Continue into `packages/thu-info-lib/src/index.ts`.
+7. Fix parsing, model, or request logic in `packages/thu-info-lib/src/lib/**` only after confirming the app-side call path.
+
+### For API bugs
+
+Use the same full trace. API bugs in this repo commonly fall into four categories:
+
+- endpoint or auth issue in `packages/thu-info-lib/src/lib/**`
+- parsing mismatch in `packages/thu-info-lib/src/models/**` or parser code
+- app passes the wrong parameters into `helper`
+- app renders stale assumptions over correct normalized data
+
+### For state or persistence bugs
+
+Start in:
+
+- `apps/thu-info-app/src/redux/store.ts`
+- `apps/thu-info-app/src/redux/slices/**`
+
+Pay special attention to:
+
+- persistence transforms
+- schedule migrations
+- keychain vs AsyncStorage behavior
+- singleton `helper` rehydration
+
+## Repo-Local Skill Usage
+
+The source of truth for these skills is the repo-local `skills/` directory.
+
+If Codex should load them as installed skills, link or copy each skill directory into `$CODEX_HOME/skills` and restart Codex. Symlinks are acceptable and keep the repository copy as the single source of truth.
+
+Expected shape:
+
+```text
+skills/
+  thu-info-workspace/
+    SKILL.md
+    agents/openai.yaml
+    references/...
+  thu-info-auth-session/
+  thu-info-academic/
+  ...
 ```
 
-#### HarmonyOS
+## Editing Rules For Agents
 
-- [DevEco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-software-install-V5)
-- [Yarn](https://classic.yarnpkg.com/lang/en/) Classic
+- Prefer changing the narrowest domain module that fully fixes the bug.
+- Keep app-level UX decisions in `apps/thu-info-app`.
+- Keep protocol, parsing, and normalization logic in `packages/thu-info-lib`.
+- Update mocks when response shape or parser behavior changes.
+- Preserve platform-specific branches for Android, iOS, and Harmony.
+- Preserve app-secret gates and security-sensitive flows when touching finance, report, or auth surfaces.
 
-We recommend following the official docs:
+## High-Value Files
 
-- [环境搭建.md](https://gitcode.com/openharmony-sig/ohos_react_native/blob/master/docs/zh-cn/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.md)
-- [environment-setup.md](https://gitcode.com/openharmony-sig/ohos_react_native/blob/master/docs/en/environment-setup.md)
+- `apps/thu-info-app/src/components/Root.tsx`
+- `apps/thu-info-app/src/ui/home/home.tsx`
+- `apps/thu-info-app/src/redux/store.ts`
+- `apps/thu-info-app/src/redux/slices/config.ts`
+- `packages/thu-info-lib/src/index.ts`
+- `packages/thu-info-lib/src/constants/strings.ts`
 
-**Make sure you have environment variable `RNOH_C_API_ARCH=1` set.**
+## Skill-First Entry Point
 
-### Building (Android, iOS)
+If you are an agent starting cold, read these in order:
 
-```bash
-cd thu-info-app
-yarn
-yarn android                  # For Android
-npx pod-install && yarn ios   # For iOS
-```
+1. `skills/thu-info-workspace/SKILL.md`
+2. `skills/thu-info-workspace/references/repo-map.md`
+3. The domain skill that matches the task
+4. Only then the corresponding app screen and `thu-info-lib` implementation
 
-### Building (HarmonyOS)
+## Non-Goals Of This README
 
-```bash
-cd thu-info-app
-./setup-harmony.sh
-```
+This file does not try to be:
 
-Open DevEco Studio and sync project.
+- a user download page
+- a release announcement page
+- a general build tutorial
+- a full contributor onboarding guide
 
-```bash
-cd apps/thu-info-app
-yarn codegen-harmony
-yarn bundle-harmony
-```
-
-Build and run project with DevEco Studio.
-
-> Optional: for react-native hot reload
-> 
-> ```bash
-> hdc rport tcp:8081 tcp:8081
-> yarn start
-> ```
-
-## Contributing
-
-Please follow the [Contributing guidelines](CONTRIBUTING.md).
-
-## Commercial Use
-
-The source code is licenced under Business Source License 1.1, and is not allowed for commercial use unless explicitly granted by UNIDY2002 or after the Change Date arrives.
-
-## Acknowledgement
-
-Great thanks to the [learnX](https://github.com/robertying/learnX) project, without referring to whose code the migration to React Native would never be as smooth.
-
-Best regards to the JavaScript and the React Native community.
+It exists to help agents enter the right part of the codebase quickly and use the repo-local skills correctly.
