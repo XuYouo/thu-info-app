@@ -1,11 +1,19 @@
 # File Map
 
+## Bundled API Snapshot
+
+- `InfoHelper.getDormScore()`
+- `InfoHelper.getEleRechargePayCode()`
+- `InfoHelper.getElePayRecord()`
+- `InfoHelper.getEleRemainder()`
+- `InfoHelper.resetDormPassword()`
+
 ## Official Dorm Layer
 
-- `packages/thu-info-lib/src/lib/dorm.ts`: dorm score, electricity remainder, recharge pay code, payment records, and dorm-password reset.
-- `packages/thu-info-lib/src/index.ts`: public helper methods and the gate around `getEleRechargePayCode()`.
-- `packages/thu-info-lib/src/lib/card.ts`: `canRechargeCampusCard()` compatibility check for electricity recharge.
-- `packages/thu-info-lib/src/mocks/dorm.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/dorm.ts`: dorm score, electricity remainder, recharge pay code, payment records, and dorm-password reset.
+- `assets/runtime/node_modules/@thu-info/lib/src/index.ts`: public helper methods and the gate around `getEleRechargePayCode()`.
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/card.ts`: `canRechargeCampusCard()` compatibility check for electricity recharge.
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/dorm.ts`
 
 ## Important Seams
 

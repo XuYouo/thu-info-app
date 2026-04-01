@@ -1,4 +1,4 @@
 interface:
   display_name: "THU Info Lib Auth"
   short_description: "Handle login, roaming, 2FA, and trust."
-  default_prompt: "Use $thu-info-lib-auth to work on login, session, cookie, 2FA, or trusted-device flows in packages/thu-info-lib."
+  default_prompt: "Use $thu-info-lib-auth to work on login, session, cookie, 2FA, or trusted-device flows in the standalone THU Info runtime."

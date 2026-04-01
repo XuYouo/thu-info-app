@@ -1,18 +1,44 @@
 # File Map
 
+## Bundled API Snapshot
+
+- `InfoHelper.appStartUp()`
+- `InfoHelper.appUsageStat()`
+- `InfoHelper.getLatestAnnounces()`
+- `InfoHelper.getLatestVersion()`
+- `InfoHelper.submitFeedback()`
+- `InfoHelper.getFeedbackReplies()`
+- `InfoHelper.getWeChatGroupQRCodeContent()`
+- `InfoHelper.getPrivacyUrl()`
+- `InfoHelper.getGitNamespaces()`
+- `InfoHelper.getGitRecentProjects()`
+- `InfoHelper.getGitOwnedProjects()`
+- `InfoHelper.searchGitProjects()`
+- `InfoHelper.getGitStarredProjects()`
+- `InfoHelper.getGitProjectDetail()`
+- `InfoHelper.getGitProjectTree()`
+- `InfoHelper.getGitProjectBranches()`
+- `InfoHelper.getGitProjectFileBlob()`
+- `InfoHelper.renderGitMarkdown()`
+- `InfoHelper.getUserInfo()`
+- `InfoHelper.naiveSendMail()`
+- `InfoHelper.switchLang()`
+- `InfoHelper.getCountdown()`
+- `InfoHelper.getMadModelToken()`
+
 ## State and Service Files
 
-- `packages/thu-info-lib/src/lib/app.ts`: announcements, version, privacy URL, feedback, QR code, and app stats.
-- `packages/thu-info-lib/src/models/app/announcement.ts`
-- `packages/thu-info-lib/src/models/app/feedback.ts`
-- `packages/thu-info-lib/src/models/app/version.ts`
-- `packages/thu-info-lib/src/mocks/app.ts`
-- `packages/thu-info-lib/src/lib/gitlab.ts`: GitLab namespace, project, tree, branch, blob, search, and markdown-render APIs.
-- `packages/thu-info-lib/src/models/gitlab/gitlab.ts`
-- `packages/thu-info-lib/src/mocks/gitlab.ts`
-- `packages/thu-info-lib/src/lib/basics.ts`: `getUserInfo()`, `naiveSendMail()`, `switchLang()`, `getMadModelToken()`, and `countdown()`.
-- `packages/thu-info-lib/src/index.ts`: `appStartUp()`, `appUsageStat()`, and public service methods.
-- `packages/thu-info-lib/src/utils/error.ts`: `GitLabApiError`.
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/app.ts`: announcements, version, privacy URL, feedback, QR code, and app stats.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/app/announcement.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/models/app/feedback.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/models/app/version.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/app.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/gitlab.ts`: GitLab namespace, project, tree, branch, blob, search, and markdown-render APIs.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/gitlab/gitlab.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/gitlab.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/basics.ts`: `getUserInfo()`, `naiveSendMail()`, `switchLang()`, `getMadModelToken()`, and `countdown()`.
+- `assets/runtime/node_modules/@thu-info/lib/src/index.ts`: `appStartUp()`, `appUsageStat()`, and public service methods.
+- `assets/runtime/node_modules/@thu-info/lib/src/utils/error.ts`: `GitLabApiError`.
 
 ## Important Seams
 

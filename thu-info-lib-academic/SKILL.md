@@ -1,18 +1,20 @@
 ---
 name: thu-info-lib-academic
-description: Implement academic APIs in `packages/thu-info-lib`. Use when working on grades, GPA and report parsing, teaching evaluation, physical exam, classroom state, degree program parsing, score lookup, or course registration.
+description: Implement academic APIs in the bundled THU Info runtime. Use when working on grades, GPA and report parsing, teaching evaluation, physical exam, classroom state, degree program parsing, score lookup, or course registration.
 ---
 
 # THU Info Lib Academic
 
 Read `references/file-map.md` first. This domain mixes several upstream systems, and each one has separate graduate or undergraduate branches.
 
+This skill is intended to stay standalone. Run `node scripts/run.mjs help` to see the supported academic commands. The runner installs and executes `@thu-info/lib@3.15.2` under `assets/runtime/node_modules`.
+
 ## Split the work by subsystem
 
-- Use `packages/thu-info-lib/src/lib/basics.ts` for report, evaluation, physical exam, and classroom data.
-- Use `packages/thu-info-lib/src/lib/cr.ts` for course registration and queue-state flows.
-- Use `packages/thu-info-lib/src/lib/program.ts` for degree-program parsing.
-- Use `packages/thu-info-lib/src/lib/thos.ts` for score lookup by course ID.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/lib/basics.ts` for report, evaluation, physical exam, and classroom data.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/lib/cr.ts` for course registration and queue-state flows.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/lib/program.ts` for degree-program parsing.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/lib/thos.ts` for score lookup by course ID.
 
 ## Preserve upstream branching
 

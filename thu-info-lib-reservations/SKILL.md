@@ -1,18 +1,20 @@
 ---
 name: thu-info-lib-reservations
-description: Implement reservation APIs in `packages/thu-info-lib`. Use when working on library seats, library rooms, sports reservations, reserves library downloads, reservation records, socket status, or related availability and payment flows.
+description: Implement reservation APIs in the bundled THU Info runtime. Use when working on library seats, library rooms, sports reservations, reserves library downloads, reservation records, socket status, or related availability and payment flows.
 ---
 
 # THU Info Lib Reservations
 
 Read `references/file-map.md` first. This skill covers four related but distinct booking systems.
 
+This skill is intended to stay standalone. Run `node scripts/run.mjs help` to see the supported reservation commands. The runner installs and executes `@thu-info/lib@3.15.2` under `assets/runtime/node_modules`.
+
 ## Split the work by subsystem
 
-- Use `packages/thu-info-lib/src/lib/library.ts` for library lists, floors, sections, seats, socket status, booking, cancellation, and library-room flows.
-- Use `packages/thu-info-lib/src/lib/sports.ts` for sports resources, phone setup, captcha, booking, payment, unsubscribe, and records.
-- Use `packages/thu-info-lib/src/lib/reserves-lib.ts` for reserves-library search, detail, and chapter download.
-- Use the related models under `packages/thu-info-lib/src/models/home/**` as the canonical output shapes.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/lib/library.ts` for library lists, floors, sections, seats, socket status, booking, cancellation, and library-room flows.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/lib/sports.ts` for sports resources, phone setup, captcha, booking, payment, unsubscribe, and records.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/lib/reserves-lib.ts` for reserves-library search, detail, and chapter download.
+- Use the related models under `assets/runtime/node_modules/@thu-info/lib/src/models/home/**` as the canonical output shapes.
 
 ## Preserve separate auth and availability rules
 

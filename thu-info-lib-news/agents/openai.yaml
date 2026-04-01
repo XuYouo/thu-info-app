@@ -1,4 +1,4 @@
 interface:
   display_name: "THU Info Lib News"
   short_description: "Build news retrieval and subscription APIs."
-  default_prompt: "Use $thu-info-lib-news to work on news feeds, search, subscriptions, favorites, or detail parsing in packages/thu-info-lib."
+  default_prompt: "Use $thu-info-lib-news to work on news feeds, search, subscriptions, favorites, or detail parsing in the standalone THU Info runtime."

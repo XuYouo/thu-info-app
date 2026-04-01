@@ -1,17 +1,19 @@
 ---
 name: thu-info-lib-news
-description: Implement news APIs in `packages/thu-info-lib`. Use when working on news feeds, search, detail parsing, favorites, subscriptions, channel lists, source lists, or news normalization.
+description: Implement news APIs in the bundled THU Info runtime. Use when working on news feeds, search, detail parsing, favorites, subscriptions, channel lists, source lists, or news normalization.
 ---
 
 # THU Info Lib News
 
 Read `references/file-map.md` first. This skill is limited to library-side news retrieval, mutation, and parsing.
 
+This skill is intended to stay standalone. Run `node scripts/run.mjs help` to see the supported news commands. The runner installs and executes `@thu-info/lib@3.15.2` under `assets/runtime/node_modules`.
+
 ## Keep the news API surface together
 
-- Use `packages/thu-info-lib/src/lib/news.ts` for list, search, detail, source, channel, subscription, and favorite flows.
-- Use `packages/thu-info-lib/src/models/news/news.ts` for normalized slice, subscription, and channel types.
-- Use `packages/thu-info-lib/src/mocks/news.ts` to keep mocked behavior compatible with real parsing.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/lib/news.ts` for list, search, detail, source, channel, subscription, and favorite flows.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/models/news/news.ts` for normalized slice, subscription, and channel types.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/mocks/news.ts` to keep mocked behavior compatible with real parsing.
 
 ## Preserve normalization in the library
 

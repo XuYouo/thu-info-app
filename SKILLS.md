@@ -4,36 +4,35 @@ This file explains how to use the repo-local THU Info skills from the repository
 
 ## Core Rule
 
-These skills are not standalone assets.
+Each `thu-info-lib-*` folder is intended to be a standalone, atomic skill package.
 
-They are designed to be used together with:
+That means each skill remains useful when installed by itself, because it carries:
 
-- `packages/thu-info-lib`
+- `SKILL.md`
+- `agents/openai.yaml`
+- bundled `references/`
+- bundled `scripts/`
+- bundled executable runtime in `assets/runtime/` for domain skills
 
-If an agent only installs or copies the `thu-info-lib-*` skill folders without also carrying `packages/thu-info-lib`, the skills will lose most of their value because their instructions, file maps, and debugging workflow all resolve into that library.
+The skill should not require another separately installed skill bundle or an extra copied code folder just to run.
 
-In practice, the portable bundle is:
+## What "Standalone" Means Here
 
-- `thu-info-lib-overview/`
-- `thu-info-lib-auth/`
-- `thu-info-lib-academic/`
-- `thu-info-lib-schedule/`
-- `thu-info-lib-news/`
-- `thu-info-lib-reservations/`
-- `thu-info-lib-finance/`
-- `thu-info-lib-dorm-life/`
-- `thu-info-lib-network/`
-- `thu-info-lib-services/`
-- `packages/thu-info-lib/`
+Standalone does not mean the skill magically contains the whole application repository.
 
-Do not distribute or install only the skill folders.
+It means:
+
+- the skill carries enough bundled guidance to understand the domain on its own
+- the skill carries its own runner scripts for direct execution
+- domain skills install `@thu-info/lib@3.15.2` into `assets/runtime/node_modules/`
+- the skill can be installed alone into Codex without packaging `packages/thu-info-lib` beside it
+
+If no matching workspace exists, the skill is still usable through its bundled references and direct runners.
 
 ## What These Skills Cover
 
-These root-level skills describe the API and model surface of `packages/thu-info-lib`.
-
 - `thu-info-lib-overview`
-  - Entry point for routing work to the right domain.
+  - Entry point for routing work to the right domain and listing the standalone runners.
 - `thu-info-lib-auth`
   - Login, logout, cookies, roaming, 2FA, trusted devices, auth hooks.
 - `thu-info-lib-academic`
@@ -59,43 +58,39 @@ When an agent starts cold:
 
 1. Read `thu-info-lib-overview/SKILL.md`.
 2. Read `thu-info-lib-overview/references/repo-map.md`.
-3. Switch to the matching domain skill.
-4. Trace the code inside `packages/thu-info-lib/src/index.ts`, `src/lib/**`, `src/models/**`, and `src/mocks/**`.
-
-For API bugs, parser bugs, or model bugs, stay inside `packages/thu-info-lib` first. Only inspect app-shell code if the library contract appears correct.
+3. Run `node scripts/run.mjs help` inside the matching domain skill.
+4. Use the domain runner and its installed npm runtime for direct execution.
+5. Read the bundled references when you need implementation details or method coverage.
 
 ## Installing Into Codex
 
-If you want Codex to load these as installed skills, link each root-level `thu-info-lib-*` directory into `$CODEX_HOME/skills` or `~/.codex/skills`.
+If you want Codex to load these as installed skills, link any root-level `thu-info-lib-*` directory into `$CODEX_HOME/skills` or `~/.codex/skills`.
 
 Important:
 
-- install the skill folders and `packages/thu-info-lib` from the same revision
-- do not install the skill folders alone
-- do not rename `packages/thu-info-lib` unless you also rewrite the skill contents
+- a skill may be installed independently
+- bundled `references/`, `scripts/`, and `assets/runtime/` should travel with that skill folder
+- domain skills run against their own installed npm runtime and do not require an extra packaged copy of `packages/thu-info-lib`
 
 ## Expected Shape
 
 ```text
 thu-info-lib-overview/
+  SKILL.md
+  agents/openai.yaml
+  references/...
+  scripts/...
 thu-info-lib-auth/
+  ...
+  assets/runtime/...
 thu-info-lib-academic/
-thu-info-lib-schedule/
-thu-info-lib-news/
-thu-info-lib-reservations/
-thu-info-lib-finance/
-thu-info-lib-dorm-life/
-thu-info-lib-network/
-thu-info-lib-services/
-packages/
-  thu-info-lib/
+  ...
+  assets/runtime/...
+...
 ```
 
 ## Source Of Truth
 
-The source of truth is the repository copy of:
+The source of truth for each skill is its own folder.
 
-- the root-level `thu-info-lib-*` skill folders
-- `packages/thu-info-lib`
-
-If another agent installs these skills elsewhere, keep that installation synced with both parts together.
+If another agent installs a skill elsewhere, copy or link the whole skill directory, not just `SKILL.md`.

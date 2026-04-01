@@ -1,16 +1,32 @@
 # File Map
 
+## Bundled API Snapshot
+
+- `InfoHelper.loginCampusCard()`
+- `InfoHelper.getCampusCardInfo()`
+- `InfoHelper.getCampusCardPhotoUrl()`
+- `InfoHelper.getCampusCardTransactions()`
+- `InfoHelper.changeCampusCardPassword()`
+- `InfoHelper.modifyCampusCardMaxTransactionAmount()`
+- `InfoHelper.reportCampusCardLoss()`
+- `InfoHelper.cancelCampusCardLoss()`
+- `InfoHelper.rechargeCampusCard()`
+- `InfoHelper.getInvoiceList()`
+- `InfoHelper.getInvoicePDF()`
+- `InfoHelper.getBankPayment()`
+- `InfoHelper.getGraduateIncome()`
+
 ## Library Layer
 
-- `packages/thu-info-lib/src/lib/card.ts`: campus-card auth and all card mutations.
-- `packages/thu-info-lib/src/models/card/info.ts`
-- `packages/thu-info-lib/src/models/card/transaction.ts`
-- `packages/thu-info-lib/src/models/card/recharge.ts`
-- `packages/thu-info-lib/src/mocks/card.ts`
-- `packages/thu-info-lib/src/lib/basics.ts`: bank payment, invoice list and PDF, and graduate income.
-- `packages/thu-info-lib/src/models/home/bank.ts`
-- `packages/thu-info-lib/src/models/home/invoice.ts`
-- `packages/thu-info-lib/src/mocks/basics.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/card.ts`: campus-card auth and all card mutations.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/card/info.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/models/card/transaction.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/models/card/recharge.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/card.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/basics.ts`: bank payment, invoice list and PDF, and graduate income.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/home/bank.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/models/home/invoice.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/basics.ts`
 
 ## Important Seams
 

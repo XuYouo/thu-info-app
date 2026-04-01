@@ -1,25 +1,27 @@
 ---
 name: thu-info-lib-overview
-description: Orient yourself in `packages/thu-info-lib` and route work to the correct lib-only THU Info skill. Use when a task spans multiple THU Info API domains, needs the right `InfoHelper` entrypoint quickly, or requires shared conventions for methods, models, mocks, constants, and network wrappers.
+description: Orient yourself in the bundled THU Info runtime and route work to the correct standalone THU Info skill. Use when a task spans multiple THU Info API domains, needs the right `InfoHelper` entrypoint quickly, or requires shared conventions for methods, models, mocks, constants, and network wrappers.
 ---
 
 # THU Info Lib Overview
 
 Start here for library-only work. Read `references/repo-map.md` first, then switch to the most specific downstream `thu-info-lib-*` skill once the request is scoped.
 
+This skill is intended to stay standalone. Run `node scripts/run.mjs` to see the available standalone domain runners. Domain skills call their own bundled runtime from `assets/runtime` and do not depend on an external code copy.
+
 ## Follow the library split
 
-- Treat `packages/thu-info-lib/src/index.ts` as the public `InfoHelper` surface and auth hook contract.
-- Treat `packages/thu-info-lib/src/lib/*.ts` as protocol, request, parsing, and normalization code.
-- Treat `packages/thu-info-lib/src/models/**` as normalized return types and merge helpers.
-- Treat `packages/thu-info-lib/src/mocks/**` as contract fixtures that should stay compatible with real parser output.
-- Treat `packages/thu-info-lib/src/constants/strings.ts`, `src/utils/network.ts`, and `src/utils/error.ts` as shared infrastructure.
+- Treat `assets/runtime/node_modules/@thu-info/lib/src/index.ts` as the public `InfoHelper` surface and auth hook contract.
+- Treat `assets/runtime/node_modules/@thu-info/lib/src/lib/*.ts` as protocol, request, parsing, and normalization code.
+- Treat `assets/runtime/node_modules/@thu-info/lib/src/models/**` as normalized return types and merge helpers.
+- Treat `assets/runtime/node_modules/@thu-info/lib/src/mocks/**` as contract fixtures that should stay compatible with real parser output.
+- Treat `assets/runtime/node_modules/@thu-info/lib/src/constants/strings.ts`, `src/utils/network.ts`, and `src/utils/error.ts` as shared infrastructure.
 
 ## Trace changes in this order
 
-1. Find the public method in `packages/thu-info-lib/src/index.ts`.
-2. Trace into the corresponding file under `packages/thu-info-lib/src/lib/**`.
-3. Inspect related types under `packages/thu-info-lib/src/models/**`.
+1. Find the public method in `assets/runtime/node_modules/@thu-info/lib/src/index.ts`.
+2. Trace into the corresponding file under `assets/runtime/node_modules/@thu-info/lib/src/lib/**`.
+3. Inspect related types under `assets/runtime/node_modules/@thu-info/lib/src/models/**`.
 4. Update mocks, constants, or shared utilities only after the response shape is clear.
 
 ## Respect shared invariants

@@ -1,18 +1,20 @@
 ---
 name: thu-info-lib-auth
-description: Implement and debug authentication and session flows in `packages/thu-info-lib`. Use when working on `InfoHelper` login and logout, cookies, roaming, SM2 encryption, 2FA, trusted devices, fingerprint state, or auth hook contracts.
+description: Implement and debug authentication and session flows in the bundled THU Info runtime. Use when working on `InfoHelper` login and logout, cookies, roaming, SM2 encryption, 2FA, trusted devices, fingerprint state, or auth hook contracts.
 ---
 
 # THU Info Lib Auth
 
 Read `references/file-map.md` before editing. This skill owns library-level session semantics and the `InfoHelper` auth extension points.
 
+This skill is intended to stay standalone. Run `node scripts/run.mjs help` to see the supported auth commands. The runner installs and executes `@thu-info/lib@3.15.2` under `assets/runtime/node_modules`.
+
 ## Follow the session lifecycle
 
-1. Start at helper fields and hooks in `packages/thu-info-lib/src/index.ts`.
-2. Trace `login()`, `logout()`, and `forgetDevice()` into `packages/thu-info-lib/src/lib/core.ts`.
-3. Check shared auth endpoints in `packages/thu-info-lib/src/constants/strings.ts`.
-4. Inspect `packages/thu-info-lib/src/utils/network.ts` and `src/utils/error.ts` when failures look transport- or error-classification-related.
+1. Start at helper fields and hooks in `assets/runtime/node_modules/@thu-info/lib/src/index.ts`.
+2. Trace `login()`, `logout()`, and `forgetDevice()` into `assets/runtime/node_modules/@thu-info/lib/src/lib/core.ts`.
+3. Check shared auth endpoints in `assets/runtime/node_modules/@thu-info/lib/src/constants/strings.ts`.
+4. Inspect `assets/runtime/node_modules/@thu-info/lib/src/utils/network.ts` and `src/utils/error.ts` when failures look transport- or error-classification-related.
 
 ## Preserve hook contracts
 

@@ -1,17 +1,19 @@
 ---
 name: thu-info-lib-dorm-life
-description: Implement dorm APIs in `packages/thu-info-lib`. Use when working on dorm score, electricity balance, electricity recharge pay codes, electricity records, or dorm-password reset.
+description: Implement dorm APIs in the bundled THU Info runtime. Use when working on dorm score, electricity balance, electricity recharge pay codes, electricity records, or dorm-password reset.
 ---
 
 # THU Info Lib Dorm & Living
 
-Read `references/file-map.md` first. This skill is limited to dorm endpoints that already live inside `packages/thu-info-lib`.
+Read `references/file-map.md` first. This skill is limited to the dorm endpoints bundled into this standalone runtime.
+
+This skill is intended to stay standalone. Run `node scripts/run.mjs help` to see the supported dorm commands. The runner installs and executes `@thu-info/lib@3.15.2` under `assets/runtime/node_modules`.
 
 ## Focus on the official dorm flows
 
-- Use `packages/thu-info-lib/src/lib/dorm.ts` for dorm score, electricity recharge pay code, electricity payment records, electricity balance, and dorm-password reset.
-- Check `packages/thu-info-lib/src/index.ts` for the public helper methods and the recharge gate around `getEleRechargePayCode()`.
-- Keep `packages/thu-info-lib/src/mocks/dorm.ts` aligned with parser output.
+- Use `assets/runtime/node_modules/@thu-info/lib/src/lib/dorm.ts` for dorm score, electricity recharge pay code, electricity payment records, electricity balance, and dorm-password reset.
+- Check `assets/runtime/node_modules/@thu-info/lib/src/index.ts` for the public helper methods and the recharge gate around `getEleRechargePayCode()`.
+- Keep `assets/runtime/node_modules/@thu-info/lib/src/mocks/dorm.ts` aligned with parser output.
 
 ## Preserve recharge and reset assumptions
 

@@ -1,13 +1,23 @@
 # File Map
 
+## Bundled API Snapshot
+
+- `InfoHelper.getNetworkVerificationImageUrl()`
+- `InfoHelper.loginUsereg()`
+- `InfoHelper.getOnlineDevices()`
+- `InfoHelper.getNetworkBalance()`
+- `InfoHelper.getNetworkAccountInfo()`
+- `InfoHelper.logoutNetworkDevice()`
+- `InfoHelper.loginNetworkDevice()`
+
 ## Library Layer
 
-- `packages/thu-info-lib/src/lib/network.ts`: verification image, usereg login, online devices, balance, account info, logout, and import-login actions.
-- `packages/thu-info-lib/src/lib/basics.ts`: `getUserInfo()` helper used to derive the network username.
-- `packages/thu-info-lib/src/models/network/account.ts`
-- `packages/thu-info-lib/src/models/network/balance.ts`
-- `packages/thu-info-lib/src/models/network/detail.ts`
-- `packages/thu-info-lib/src/models/network/device.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/network.ts`: verification image, usereg login, online devices, balance, account info, logout, and import-login actions.
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/basics.ts`: `getUserInfo()` helper used to derive the network username.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/network/account.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/models/network/balance.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/models/network/detail.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/models/network/device.ts`
 
 ## Important Seams
 

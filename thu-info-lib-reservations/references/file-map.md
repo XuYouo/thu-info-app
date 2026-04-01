@@ -1,16 +1,42 @@
 # File Map
 
+## Bundled API Snapshot
+
+- `InfoHelper.getLibraryList()`
+- `InfoHelper.getLibrarySectionList()`
+- `InfoHelper.getLibraryFloorList()`
+- `InfoHelper.getLibrarySeatList()`
+- `InfoHelper.toggleSocketState()`
+- `InfoHelper.bookLibrarySeat()`
+- `InfoHelper.getBookingRecords()`
+- `InfoHelper.cancelBooking()`
+- `InfoHelper.getLibraryRoomAccNo()`
+- `InfoHelper.loginLibraryRoomBooking()`
+- `InfoHelper.getLibraryRoomBookingInfoList()`
+- `InfoHelper.getLibraryRoomBookingResourceList()`
+- `InfoHelper.bookLibraryRoom()`
+- `InfoHelper.getLibraryRoomBookingRecord()`
+- `InfoHelper.cancelLibraryRoomBooking()`
+- `InfoHelper.getSportsResources()`
+- `InfoHelper.makeSportsReservation()`
+- `InfoHelper.getSportsReservationRecords()`
+- `InfoHelper.paySportsReservation()`
+- `InfoHelper.unsubscribeSportsReservation()`
+- `InfoHelper.searchReservesLib()`
+- `InfoHelper.getReservesLibBookDetail()`
+- `InfoHelper.reservesLibDownloadChapters()`
+
 ## Library and Models
 
-- `packages/thu-info-lib/src/lib/library.ts`: library lists, floors, sections, seats, socket status, seat booking, library-room booking, cancellation, and record APIs.
-- `packages/thu-info-lib/src/models/home/library.ts`
-- `packages/thu-info-lib/src/mocks/library.ts`
-- `packages/thu-info-lib/src/lib/sports.ts`: resources, phone number, captcha, booking, payment, unsubscribe, and record parsing.
-- `packages/thu-info-lib/src/models/home/sports.ts`
-- `packages/thu-info-lib/src/mocks/sports.ts`
-- `packages/thu-info-lib/src/lib/reserves-lib.ts`: reserves-library search, detail, and chapter download.
-- `packages/thu-info-lib/src/models/home/reserves-lib.ts`
-- `packages/thu-info-lib/src/mocks/reserves-lib.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/library.ts`: library lists, floors, sections, seats, socket status, seat booking, library-room booking, cancellation, and record APIs.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/home/library.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/library.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/sports.ts`: resources, phone number, captcha, booking, payment, unsubscribe, and record parsing.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/home/sports.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/sports.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/reserves-lib.ts`: reserves-library search, detail, and chapter download.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/home/reserves-lib.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/reserves-lib.ts`
 
 ## Important Seams
 

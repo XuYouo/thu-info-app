@@ -1,4 +1,4 @@
 interface:
   display_name: "THU Info Lib Finance"
   short_description: "Manage campus card, invoices, and finance APIs."
-  default_prompt: "Use $thu-info-lib-finance to work on campus card, bank payment, invoices, graduate income, or recharge flows in packages/thu-info-lib."
+  default_prompt: "Use $thu-info-lib-finance to work on campus card, bank payment, invoices, graduate income, or recharge flows in the standalone THU Info runtime."

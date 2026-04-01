@@ -1,12 +1,26 @@
 # File Map
 
+## Bundled API Snapshot
+
+- `InfoHelper.getSchedule()`
+- `InfoHelper.saveCustomSchedule()`
+- `InfoHelper.deleteCustomSchedule()`
+- `InfoHelper.getCalendar()`
+- `InfoHelper.getCalendarYear()`
+- `InfoHelper.getCalendarImageUrl()`
+- `mergeSchedules()`
+- `getOverlappedBlock()`
+- `parseJSON()`
+- `parseSecondaryWeek()`
+- `parseScript()`
+
 ## Library and Models
 
-- `packages/thu-info-lib/src/lib/schedule.ts`: official schedule fetch, custom schedule upload, and custom schedule delete.
-- `packages/thu-info-lib/src/lib/basics.ts`: school calendar data, calendar year, and calendar image URL helpers.
-- `packages/thu-info-lib/src/models/schedule/schedule.ts`: schedule model, merge helpers, overlap helpers, and parser utilities.
-- `packages/thu-info-lib/src/models/schedule/calendar.ts`: semester and school-calendar models.
-- `packages/thu-info-lib/src/mocks/schedule.ts`
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/schedule.ts`: official schedule fetch, custom schedule upload, and custom schedule delete.
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/basics.ts`: school calendar data, calendar year, and calendar image URL helpers.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/schedule/schedule.ts`: schedule model, merge helpers, overlap helpers, and parser utilities.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/schedule/calendar.ts`: semester and school-calendar models.
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/schedule.ts`
 
 ## Notable Exports
 

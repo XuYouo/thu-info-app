@@ -1,12 +1,25 @@
 # File Map
 
+## Bundled API Snapshot
+
+- `InfoHelper.login()`
+- `InfoHelper.logout()`
+- `InfoHelper.forgetDevice()`
+- `InfoHelper.clearCookieHandler`
+- `InfoHelper.loginErrorHook`
+- `InfoHelper.twoFactorMethodHook`
+- `InfoHelper.twoFactorAuthHook`
+- `InfoHelper.twoFactorAuthLimitHook`
+- `InfoHelper.trustFingerprintHook`
+- `InfoHelper.trustFingerprintNameHook`
+
 ## Primary Files
 
-- `packages/thu-info-lib/src/index.ts`: `InfoHelper` fields, hooks, and public auth methods.
-- `packages/thu-info-lib/src/lib/core.ts`: login, logout, `forgetDevice()`, roaming wrappers, SM2 encryption, 2FA, trusted devices, and redirect handling.
-- `packages/thu-info-lib/src/constants/strings.ts`: auth, WebVPN, OAuth, and trusted-device endpoints.
-- `packages/thu-info-lib/src/utils/network.ts`: request helpers, cookie-aware transport, and shared fetch plumbing.
-- `packages/thu-info-lib/src/utils/error.ts`: `LoginError` and other typed failures surfaced to callers.
+- `assets/runtime/node_modules/@thu-info/lib/src/index.ts`: `InfoHelper` fields, hooks, and public auth methods.
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/core.ts`: login, logout, `forgetDevice()`, roaming wrappers, SM2 encryption, 2FA, trusted devices, and redirect handling.
+- `assets/runtime/node_modules/@thu-info/lib/src/constants/strings.ts`: auth, WebVPN, OAuth, and trusted-device endpoints.
+- `assets/runtime/node_modules/@thu-info/lib/src/utils/network.ts`: request helpers, cookie-aware transport, and shared fetch plumbing.
+- `assets/runtime/node_modules/@thu-info/lib/src/utils/error.ts`: `LoginError` and other typed failures surfaced to callers.
 
 ## Important Seams
 

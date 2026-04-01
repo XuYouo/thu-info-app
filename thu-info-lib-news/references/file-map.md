@@ -1,10 +1,25 @@
 # File Map
 
+## Bundled API Snapshot
+
+- `InfoHelper.getNewsList()`
+- `InfoHelper.searchNewsList()`
+- `InfoHelper.getNewsSubscriptionList()`
+- `InfoHelper.getNewsSourceList()`
+- `InfoHelper.getNewsChannelList()`
+- `InfoHelper.addNewsSubscription()`
+- `InfoHelper.removeNewsSubscription()`
+- `InfoHelper.getNewsListBySubscription()`
+- `InfoHelper.getNewsDetail()`
+- `InfoHelper.addNewsToFavor()`
+- `InfoHelper.removeNewsFromFavor()`
+- `InfoHelper.getFavorNewsList()`
+
 ## News Library Layer
 
-- `packages/thu-info-lib/src/lib/news.ts`: list, search, detail, subscriptions, favorites, source list, and channel list.
-- `packages/thu-info-lib/src/models/news/news.ts`: channel tags, slices, and subscription models.
-- `packages/thu-info-lib/src/mocks/news.ts`: mock data for news flows.
+- `assets/runtime/node_modules/@thu-info/lib/src/lib/news.ts`: list, search, detail, subscriptions, favorites, source list, and channel list.
+- `assets/runtime/node_modules/@thu-info/lib/src/models/news/news.ts`: channel tags, slices, and subscription models.
+- `assets/runtime/node_modules/@thu-info/lib/src/mocks/news.ts`: mock data for news flows.
 
 ## Important Seams
 
