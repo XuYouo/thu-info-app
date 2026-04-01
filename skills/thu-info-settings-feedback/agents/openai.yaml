@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Settings & Feedback"
+  short_description: "Update settings, privacy, feedback, and about."
+  default_prompt: "Use $thu-info-settings-feedback to work on settings screens, privacy, feedback, announcements, or about pages."

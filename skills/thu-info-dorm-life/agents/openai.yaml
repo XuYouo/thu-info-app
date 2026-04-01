@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Dorm & Living"
+  short_description: "Handle dorm, utilities, and living tools."
+  default_prompt: "Use $thu-info-dorm-life to work on dorm score, electricity, washer, water, or home-network credential flows."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Auth & Session"
+  short_description: "Handle login, 2FA, cookies, and trust."
+  default_prompt: "Use $thu-info-auth-session to work on login, session, cookie, or trusted-device flows."
