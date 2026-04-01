@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Lib Services"
+  short_description: "Work on shared service and utility APIs."
+  default_prompt: "Use $thu-info-lib-services to work on announcements, feedback, version checks, GitLab, mail, language, countdown, or MadModel token APIs."

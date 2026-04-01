@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Lib Dorm & Living"
+  short_description: "Handle dorm score, electricity, and reset APIs."
+  default_prompt: "Use $thu-info-lib-dorm-life to work on dorm score, electricity balance, recharge pay codes, records, or dorm-password reset flows."

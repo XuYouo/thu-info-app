@@ -1,4 +1,0 @@
-interface:
-  display_name: "THU Info News & DeepSeek"
-  short_description: "Build news feeds, subscriptions, and AI."
-  default_prompt: "Use $thu-info-news-deepseek to work on news feeds, subscriptions, favorites, or DeepSeek integration."

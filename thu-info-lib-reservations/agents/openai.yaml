@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Lib Reservations"
+  short_description: "Implement booking APIs for campus services."
+  default_prompt: "Use $thu-info-lib-reservations to work on library seats, library rooms, sports booking, or reserves-library APIs."

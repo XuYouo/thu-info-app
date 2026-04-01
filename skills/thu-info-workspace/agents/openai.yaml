@@ -1,4 +1,0 @@
-interface:
-  display_name: "THU Info Workspace"
-  short_description: "Map the monorepo, state, and routing."
-  default_prompt: "Use $thu-info-workspace to orient yourself in the THU Info monorepo before making cross-cutting changes."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Lib Network"
+  short_description: "Implement campus network self-service APIs."
+  default_prompt: "Use $thu-info-lib-network to work on campus network login, balances, devices, or usereg self-service actions."

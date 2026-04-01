@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Lib Schedule"
+  short_description: "Work on schedules, calendars, and model helpers."
+  default_prompt: "Use $thu-info-lib-schedule to work on schedules, custom schedule upload or delete, calendar data, or schedule model helpers."

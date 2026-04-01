@@ -1,4 +1,0 @@
-interface:
-  display_name: "THU Info Schedule & Calendar"
-  short_description: "Work on schedules, calendars, and sync."
-  default_prompt: "Use $thu-info-schedule-calendar to work on schedules, custom events, calendar sync, or school calendar features."

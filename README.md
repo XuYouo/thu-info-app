@@ -1,158 +1,143 @@
-# THU Info Agent README
+# THU Info Lib Agent README
 
 This README is intentionally written for AI agents and skill-driven coding workflows.
 
-Treat this repository as a skill-enabled monorepo for THU Info. The preferred working mode is:
+Treat this repository as a lib-first monorepo. The repo-local skills at the repository root are intentionally scoped to `packages/thu-info-lib`, so the preferred working mode is:
 
-1. Read the repo-local skill index in `skills/`.
-2. Start with `thu-info-workspace` for orientation.
-3. Switch to the most specific domain skill before making changes.
-4. Trace bugs from app entrypoint to Redux to `InfoHelper` to `packages/thu-info-lib`.
+1. Read `thu-info-lib-overview/SKILL.md`.
+2. Switch to the most specific `thu-info-lib-*` skill.
+3. Stay inside `packages/thu-info-lib` unless the request explicitly requires a consumer-side fix.
+4. Trace bugs from `src/index.ts` to `src/lib/**` to `src/models/**` to `src/mocks/**`.
 
 ## Working Assumption
 
-Use this repository together with the repo-local skills under `skills/`. These skills are designed for the full monorepo, not for `packages/thu-info-lib` in isolation.
+The source of truth for the AI-facing capability map is the set of root-level skill folders plus `packages/thu-info-lib`.
 
-That means a typical bug fix may touch:
+That means the portable core for these skills is:
 
-- `apps/thu-info-app`
-- `packages/thu-info-lib`
-- `packages/RTNNetworkUtils`
-- `skills/*`
+- `thu-info-lib-overview/`
+- `thu-info-lib-auth/`
+- `thu-info-lib-academic/`
+- `thu-info-lib-schedule/`
+- `thu-info-lib-news/`
+- `thu-info-lib-reservations/`
+- `thu-info-lib-finance/`
+- `thu-info-lib-dorm-life/`
+- `thu-info-lib-network/`
+- `thu-info-lib-services/`
+- `packages/thu-info-lib/`
 
-Do not assume API bugs always live only in `packages/thu-info-lib`. Many failures are caused by one of:
-
-- wrong screen parameters
-- stale Redux state
-- incorrect helper call site
-- parser or model drift in `thu-info-lib`
-- UI assumptions that no longer match normalized data
+The repository still contains app-shell code such as `apps/thu-info-app` and native glue such as `packages/RTNNetworkUtils`, but those are consumers of the library rather than the source of truth for these skills.
 
 ## Repo Shape
 
-### App shell
+### Root-level skill layer
 
-- `apps/thu-info-app`
-- Owns navigation, screens, components, Redux, themes, translations, startup, and platform-specific UX.
+- `thu-info-lib-*`
+- Repo-local skills for library-only orientation and domain-specific coding tasks.
 
 ### Library layer
 
 - `packages/thu-info-lib`
-- Owns `InfoHelper`, login and roaming flows, request wrappers, parsers, typed models, and mocks.
+- Owns `InfoHelper`, login and roaming flows, request wrappers, parsers, typed models, mocks, and shared endpoints.
 
-### Native redirect bridge
+### Consumer layers
 
+- `apps/thu-info-app`
 - `packages/RTNNetworkUtils`
-- Supports redirect handling used by auth on Harmony/OpenHarmony.
-
-### Agent skill layer
-
-- `skills`
-- Holds repo-local skills for workspace orientation and domain-specific coding tasks.
+- Useful when the bug is not inside the library contract, but intentionally outside the scope of these skills.
 
 ## Installed Repo-Local Skills
 
-- `thu-info-workspace`
-  - Start here for cross-domain work, architecture mapping, and multi-module bug triage.
-- `thu-info-auth-session`
-  - Use for login, logout, cookies, 2FA, trusted devices, and session persistence.
-- `thu-info-academic`
+- `thu-info-lib-overview`
+  - Start here for cross-domain library work and API triage.
+- `thu-info-lib-auth`
+  - Use for login, logout, cookies, 2FA, trusted devices, roaming, and helper auth hooks.
+- `thu-info-lib-academic`
   - Use for report, GPA, evaluation, physical exam, classrooms, degree plan, THOS, and course registration.
-- `thu-info-schedule-calendar`
-  - Use for official schedules, custom schedules, sync, ICS export, and school calendar behavior.
-- `thu-info-news-deepseek`
-  - Use for news feeds, search, detail parsing, subscriptions, favorites, and DeepSeek integration.
-- `thu-info-reservations`
+- `thu-info-lib-schedule`
+  - Use for official schedules, custom schedule upload or delete, calendar data, and schedule model helpers.
+- `thu-info-lib-news`
+  - Use for news feeds, search, detail parsing, subscriptions, favorites, channels, and sources.
+- `thu-info-lib-reservations`
   - Use for library seats, library rooms, sports booking, and reserves library flows.
-- `thu-info-campus-finance`
-  - Use for campus card, expenditure, invoices, bank payment, and graduate income.
-- `thu-info-dorm-life`
-  - Use for dorm score, electricity, washer, water, and dorm-related credentials.
-- `thu-info-network`
-  - Use for campus network login, balances, account info, and online devices.
-- `thu-info-settings-feedback`
-  - Use for settings, app secret, privacy, feedback, announcements, and about/update UX.
+- `thu-info-lib-finance`
+  - Use for campus card, expenditure APIs, invoices, bank payment, recharge, and graduate income.
+- `thu-info-lib-dorm-life`
+  - Use for dorm score, electricity, recharge pay code, and dorm-password reset.
+- `thu-info-lib-network`
+  - Use for campus network login, balances, account info, and online-device actions.
+- `thu-info-lib-services`
+  - Use for announcements, feedback, version checks, privacy, GitLab, mail, countdown, language, user info, and MadModel token bootstrap.
 
 ## Recommended Agent Workflow
 
-### For unknown bugs
-
-1. Start with `skills/thu-info-workspace/SKILL.md`.
-2. Find the route in `apps/thu-info-app/src/components/Root.tsx`.
-3. Find the entry screen in `apps/thu-info-app/src/ui/**`.
-4. Check relevant Redux slices in `apps/thu-info-app/src/redux/slices/**`.
-5. Trace the helper call through `apps/thu-info-app/src/redux/store.ts`.
-6. Continue into `packages/thu-info-lib/src/index.ts`.
-7. Fix parsing, model, or request logic in `packages/thu-info-lib/src/lib/**` only after confirming the app-side call path.
-
 ### For API bugs
 
-Use the same full trace. API bugs in this repo commonly fall into four categories:
+1. Start with `thu-info-lib-overview/SKILL.md`.
+2. Find the public method in `packages/thu-info-lib/src/index.ts`.
+3. Trace into the owning file under `packages/thu-info-lib/src/lib/**`.
+4. Inspect the related types under `packages/thu-info-lib/src/models/**`.
+5. Update mocks or shared constants only after the response shape is clear.
 
-- endpoint or auth issue in `packages/thu-info-lib/src/lib/**`
-- parsing mismatch in `packages/thu-info-lib/src/models/**` or parser code
-- app passes the wrong parameters into `helper`
-- app renders stale assumptions over correct normalized data
+### For parser or model bugs
 
-### For state or persistence bugs
+Use the same lib-first trace. Parser bugs in this repo commonly fall into four categories:
 
-Start in:
+- upstream HTML or JSON shape drift in `packages/thu-info-lib/src/lib/**`
+- model drift in `packages/thu-info-lib/src/models/**`
+- endpoint or parameter drift in `packages/thu-info-lib/src/constants/strings.ts`
+- shared transport, encoding, or cookie behavior in `packages/thu-info-lib/src/utils/network.ts`
 
-- `apps/thu-info-app/src/redux/store.ts`
-- `apps/thu-info-app/src/redux/slices/**`
+### For consumer-only bugs
 
-Pay special attention to:
-
-- persistence transforms
-- schedule migrations
-- keychain vs AsyncStorage behavior
-- singleton `helper` rehydration
+If the library contract looks correct, inspect the app shell separately. Do not expand these skills to include `apps/thu-info-app` behavior unless you intentionally want to change the skill boundary.
 
 ## Repo-Local Skill Usage
 
-The source of truth for these skills is the repo-local `skills/` directory.
+The source of truth for these skills is the set of root-level `thu-info-lib-*` folders.
 
-If Codex should load them as installed skills, link or copy each skill directory into `$CODEX_HOME/skills` and restart Codex. Symlinks are acceptable and keep the repository copy as the single source of truth.
+If Codex should load them as installed skills, link or copy each root-level skill directory into `$CODEX_HOME/skills` and restart Codex. Symlinks are acceptable and keep the repository copy as the single source of truth.
 
 Expected shape:
 
 ```text
-skills/
-  thu-info-workspace/
-    SKILL.md
-    agents/openai.yaml
-    references/...
-  thu-info-auth-session/
-  thu-info-academic/
-  ...
+thu-info-lib-overview/
+  SKILL.md
+  agents/openai.yaml
+  references/...
+thu-info-lib-auth/
+thu-info-lib-academic/
+...
+packages/
+  thu-info-lib/
 ```
 
 ## Editing Rules For Agents
 
-- Prefer changing the narrowest domain module that fully fixes the bug.
-- Keep app-level UX decisions in `apps/thu-info-app`.
-- Keep protocol, parsing, and normalization logic in `packages/thu-info-lib`.
+- Prefer changing the narrowest library module that fully fixes the bug.
+- Keep protocol, parsing, and normalization logic in `packages/thu-info-lib/src/lib/**`.
+- Keep public method signatures and hook contracts coherent in `packages/thu-info-lib/src/index.ts`.
+- Update models before widening downstream assumptions.
 - Update mocks when response shape or parser behavior changes.
-- Preserve platform-specific branches for Android, iOS, and Harmony.
-- Preserve app-secret gates and security-sensitive flows when touching finance, report, or auth surfaces.
 
 ## High-Value Files
 
-- `apps/thu-info-app/src/components/Root.tsx`
-- `apps/thu-info-app/src/ui/home/home.tsx`
-- `apps/thu-info-app/src/redux/store.ts`
-- `apps/thu-info-app/src/redux/slices/config.ts`
 - `packages/thu-info-lib/src/index.ts`
+- `packages/thu-info-lib/src/lib/core.ts`
+- `packages/thu-info-lib/src/lib/basics.ts`
 - `packages/thu-info-lib/src/constants/strings.ts`
+- `packages/thu-info-lib/src/utils/network.ts`
+- `packages/thu-info-lib/src/utils/error.ts`
 
 ## Skill-First Entry Point
 
 If you are an agent starting cold, read these in order:
 
-1. `skills/thu-info-workspace/SKILL.md`
-2. `skills/thu-info-workspace/references/repo-map.md`
+1. `thu-info-lib-overview/SKILL.md`
+2. `thu-info-lib-overview/references/repo-map.md`
 3. The domain skill that matches the task
-4. Only then the corresponding app screen and `thu-info-lib` implementation
+4. Only then the corresponding code under `packages/thu-info-lib`
 
 ## Non-Goals Of This README
 
@@ -163,4 +148,4 @@ This file does not try to be:
 - a general build tutorial
 - a full contributor onboarding guide
 
-It exists to help agents enter the right part of the codebase quickly and use the repo-local skills correctly.
+It exists to help agents enter the right part of `packages/thu-info-lib` quickly and use the repo-local skills correctly.

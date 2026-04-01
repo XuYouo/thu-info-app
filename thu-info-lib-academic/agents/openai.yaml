@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Lib Academic"
+  short_description: "Implement academic and course APIs."
+  default_prompt: "Use $thu-info-lib-academic to work on grades, exams, evaluation, classrooms, degree plans, or course registration in packages/thu-info-lib."

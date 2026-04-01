@@ -1,4 +1,0 @@
-interface:
-  display_name: "THU Info Academic"
-  short_description: "Implement academic and course workflows."
-  default_prompt: "Use $thu-info-academic to work on grades, exams, evaluation, classrooms, degree plans, or course registration."

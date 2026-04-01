@@ -1,0 +1,4 @@
+interface:
+  display_name: "THU Info Lib Overview"
+  short_description: "Route work inside packages/thu-info-lib."
+  default_prompt: "Use $thu-info-lib-overview to orient yourself in packages/thu-info-lib before making cross-domain library changes."
